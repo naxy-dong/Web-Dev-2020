@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html onmousedown = "react(event, 'cornflowerblue');" onmouseup = "react(event, 'white');" oncontextmenu = "react(event, 'white');">
+	<head>
+		<title>Events!</title>
+		<style></style>
+		<script>
+			function initialize()
+			{
+				eventOutput = document.getElementById("evout");
+			}
+			function react(e, clr)
+			{
+				if (e.type == "contextmenu")
+					e.preventDefault();
+					
+				var str = "(" + e.clientX + ", " + e.clientY + ")<br />";
+				str += "target: " + e.target + "<br />";
+				str += "button: " + e.button + "<br />";
+				str += "type: " + e.type + "<br />";
+				
+				e.target.style.backgroundColor = clr;
+				
+				eventOutput.innerHTML = str;
+			}
+		</script>
+	</head>
+	
+	<body onload = "initialize()">
+		<div id = "evout"></div>
+		<button onclick =""> </button>
+	</body>
+</html>

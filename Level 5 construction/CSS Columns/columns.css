@@ -1,0 +1,13 @@
+.column
+{
+	display:inline-block;
+	width:25%;
+	vertical-align:top;
+}
+
+.columncontainer
+{
+	display:block;
+	margin:auto;
+	text-align:center;
+}

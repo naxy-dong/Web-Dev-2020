@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Write files</title>
+		<script>
+            function initialize(){
+                postForm = document.getElementById("postform");
+            }
+            function selectItem(idx){
+                currentItemIdx = idx + offset;
+                display();
+            }
+
+            function moveOffset(mod){
+                //Adjust the offset
+                offset += mod;
+
+                if(offset < 0)
+                    offset = 0;
+                            
+                if(offset >= data.length -3)
+                    offset = data.length -3;
+
+                setThumbnails();
+                display();
+            }
+            function setThumbnails(){
+                for (var i = 0; i< itemThumbs.length; i++){
+                    itemThumbs[i].src = "images/" + data[i + offset].imgfile;
+                }
+            }
+            function display(){
+                mainImage.src = "images/" + data[currentItemIdx].imgfile;
+                captionOutput.innerHTML = data[currentItemIdx].name;
+                infoOutput.innerHTML = data[currentItemIdx].info;
+                backgroundImage.src = mainImage.src;
+            }
+            function postText(){
+                var dataRequest = new XMLHttpRequest();
+
+                var url = "http://localhost:8081/post?title=" + postForm.title.value + "&post=" + postForm.post.value;
+
+                dataRequest.open("GET", url, true);
+                dataRequest.onreadystatechange = function(){
+                    if(dataRequest.readyState == 4){
+                        postForm.title.value = "";
+                        postForm.post.value = "";
+                    }
+                }
+                dataRequest.send();
+            }
+        </script>
+        <link rel = "stylesheet" href = "dressing.css" />
+        <link rel = "stylesheet" href = "columns.css" />
+        <link rel = "stylesheet" href = "gallery.css" />
+	</head>
+	<body onload = "initialize();">
+        <form id = "postform" method = "post">
+            Title: <input type = "text" name = "title" />
+            <hr />
+            <textarea type = "text" name = "post"></textarea><br /><br />
+            <input type = "submit" onclick = "postText();" />
+        </form>
+	</body>
+</html>

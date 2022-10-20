@@ -1,0 +1,33 @@
+body
+{
+	text-align:center;
+	background-color:black;
+	color:yellow;
+}
+
+img
+{
+	width:40%;
+	margin-top:25px;
+}
+
+.column
+{
+	text-align:justify;
+	padding:2%;
+	background-image:url("starfield.jpg");
+}
+
+.column p
+{
+	font:14pt arial;
+	line-height:130%;
+}
+
+hr
+{
+	width:85%;
+	height:2px;
+	background-color:white;
+	border:thick solid red;
+}

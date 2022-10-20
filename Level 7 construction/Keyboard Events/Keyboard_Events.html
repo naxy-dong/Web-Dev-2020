@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html onkeydown = "logKey(event);">
+	<head>
+		<title>Drive the Car</title>
+		<style>
+			#log
+			{
+				width:200px;
+				height:400px;
+				overflow-y:scroll;
+				border:thick solid black;
+			}
+			#pcar
+			{
+				height:75px;
+				position:absolute;
+				top:340px;
+				left:250px;
+			}
+		</style>
+		<script>
+			const FORWARD = 38, BACKWARD = 40;
+			function initialize()
+			{
+				purpleCar = document.getElementById("pcar");
+				speedInput = document.getElementById("speedometer");
+				
+				keyLogOut = document.getElementById("log");
+				keyLog = "";
+				xCoord = 250;
+				yCoord = 340;
+			}
+			
+			function logKey(e)
+			{
+				var str = "which: " + e.which + "<br />";
+				str += "key: " + e.key + "<br />";
+				str += "code: " + e.code + "<br />";
+				console.log(str);
+				
+				var spd = parseInt(speedInput.value);
+				var dir = "";
+				
+				if (e.which == FORWARD)
+				{
+					yCoord -= spd;
+					dir = "forward";
+				}
+				else
+				{
+					if (e.which == BACKWARD)
+					{
+						yCoord += spd;
+						dir = "backward";
+					}
+				}
+				keyLog = "The car moved " + dir + ".<hr />" + keyLog;
+				
+				display();
+			}
+			function display()
+			{
+				keyLogOut.innerHTML = keyLog;
+				
+				purpleCar.style.top = yCoord + "px";
+				purpleCar.style.left = xCoord + "px";
+			}
+		</script>
+	</head>
+	<body onload = "initialize()">
+		Speed: <input id = "speedometer" value = "1" type = "number"/><br /><br />
+		<div id = "log"></div>
+		<img id = "pcar" src = "purple car.png" />
+	</body>
+</html>

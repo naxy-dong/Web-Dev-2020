@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Function as Objects</title>
+		<style>
+		</style>
+		<script>
+			const TIMER_OFF = -1;
+			function initialize()
+			{
+				counterOut = document.getElementById("ctrout");
+				counter = 0;
+				counterTimer = TIMER_OFF;
+			}
+			
+			function startCounter()
+			{
+				if(counterTimer == TIMER_OFF)
+					counterTimer = setInterval(count, 1000);
+			}
+			
+			function stopCounter()
+			{
+				clearInterval(counterTimer);
+				counterTimer = TIMER_OFF;
+			}
+			
+			function count()
+			{
+				counter++;
+				display();
+			}
+			
+			function display()
+			{
+				counterOut.innerHTML = counter;
+			}
+		</script>
+	</head>
+	<body onload = "initialize()">
+		<div id = "ctrout">0</div>
+		<button onclick = "startCounter();">Start Counter</button>
+		<button onclick = "stopCounter();">Stop Counter</button>
+	</body>
+</html>

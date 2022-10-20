@@ -1,0 +1,131 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title></title>
+		<style>
+			body
+			{
+				background-color:#00cf97;
+				text-align:center;
+			}
+			
+			p,ul,ol
+			{
+				text-align:justify;
+			}
+			
+			ul,ol
+			{
+				font-size:20px;
+				Line-Height:200%;
+			}
+			p
+			{
+				
+				margin-left:7.5%;
+				font-size:30px;
+				text-decoration:underline;
+				
+			}
+			
+			ul
+			{
+				margin-left:10%;
+				margin-right:10%;
+			}
+			
+			hr
+			{
+				width:85%;
+				height:2px;
+				background-color:white;
+				border:solid blue;
+			}
+			
+			span
+			{
+				color:#c71200;
+				text-decoration:underline;
+			}
+			
+			h1
+			{
+				border:thick double black;
+				width:30%;
+				margin-left:auto;
+				margin-right:auto;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<h1>Thirty One - Rule</h1>
+		
+		<p>Start Game</p>
+		<ul>
+			<li>The deck is placed in the middle of the board face down</li>
+			<li>The discard pile is placed besides the deck face up</li>
+			<li>At the start, each player is dealt 3 cards from the deck</li>
+			<li>The system will choose a "dealer” at random. The next player clockwise(to the dealer's left) has the first turn.</li>
+			
+		</ul>
+		
+		<p>Card Values</p>
+		<ul>
+			<li>The value of cards 2-10 corresponds to their face value.</li>
+			<li>Jack, Queen, and King all have a value of 10.</li>
+			<li>Ace has a value of 11.</li>
+		</ul>
+		
+		<p>Hand Value</p>
+		<ul>
+			<li>If the cards all have different suits, the highest card value represents the score</li>
+			<li><span>Special occasion:</span> If at least 2 cards have the same suit, adds up all of the cards of the same suit to get the score </li>
+			<li><span>Special occasion:</span> If the hand has 3 matching cards, the score is 30.</li>
+		</ul>
+		
+		<p>Button Functionality</p>
+		<ul>
+			<li>Click on <u>deck</u>: add a card from the deck to the player's hand.</li>
+			<li>Click on <u>discard pile</u>: add a card from the discard pile to the player's hand</li>
+			<li>Click on <u>knock</u>: ends the player's hand</li>
+		</ul>
+		<hr />
+		
+		<h1>How to Play the game</h1>
+		
+		<p>During Your Turn</p>
+		<ul>
+			<li>The player may draw the top card from the deck, add it to the hand, and discard a card from the hand.</li>
+			<li>The player may draw the top card from the discard pile, add it to the hand, and discard a card from the hand.</li>
+			<li>The player may "knock", announcing that the player has a high enough score to beat everyone else's score.</li>
+		</ul>
+		
+		<p>Knocking</p>
+		<ul>
+			<li>The knocking player may not draw a card.</li>
+			<li>If the player knocks, no one else may knock.</li>
+			<li>After a player knocks, the game continues around the table until it returns to the player who knocked.</li>
+			<li>The hand ends with the player who goes before the player who knocked.</li>
+			<li><span>Special occasion:</span> As soon as a player draws a score of 31, the hand ends automatically and the round ended</li>
+		</ul>
+		
+		<p>Strikes</p>
+		<ul>
+			<li>Everyone shows their hand and the player(s) with the lowest score receives a strike.</li>
+			<li>If the player who knocked and has the lowest score receives 2 strikes</li>
+			<li>Once a player has three strikes they are eliminated from the game.</li>
+			<li>The dealer shifts to the next player clockwise and begins a new round.</li>
+			<li><span>Special occasion:</span> Every player except the player with 31 receives a strike</li>
+			<li><span>Special occasion:</span> If the human player is eliminated, the game should continue as normal until it ends or the human player clicks the reset button.</li>
+			<li><span>Special occasion:</span> If the last two people tie to end the game, every player (even players previously eliminated) gets back one strike, including the last two people (so everyone has 1 strike left), and the game continues. </li>
+		</ul>
+		
+		<p>Objective</p>
+		<ul>
+			<li>To be the last player standing of the game.</li>
+		</ul>
+		
+		<hr />
+		<a href = "YuXiangDongLvl6_Project.html"><font size = 7>Return to the game</font></a>
+</html>

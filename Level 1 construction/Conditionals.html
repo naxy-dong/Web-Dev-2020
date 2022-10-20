@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title></title>
+		<style></style>
+		<script>
+			function initialize()
+			{
+				numberOutput = document.getElementById("numberout");
+				negativebutton = document.getElementById("negativebtn");
+				
+				myNumber = 0;
+				negativeAllowed = false;
+				
+				display();
+			}
+			
+			function toggleNegatives()
+			{
+				negativeAllowed = !negativeAllowed;
+				display();
+			}
+			
+			function addOne()
+			{
+				myNumber++;
+				display();
+			}
+			
+			function subtractOne()
+			{
+				myNumber--;
+				if (myNumber < 0 && !negativeAllowed)
+				{
+					myNumber = 0;
+				}
+				
+					display();
+			}
+			
+			function display()
+			{
+				numberOutput.innerHTML = myNumber;
+				
+				if (!negativeAllowed)
+				{
+					negativeButton.innerHTML = "Negatives are OFF";
+				}
+				else
+				{
+					negativeButton.innerHTML = "Negatives are ON";
+				}
+			}
+		</script>
+	</head>
+	
+	<body onload="initialize();">
+		<h1 id = "numberout"></h1>
+		<hr />
+		<button onclick ="addOne();">Add</button> <button onclick =
+		"subtractOne();">Subtract</button> <button onclick = 
+		"toggleNegatives();" id = "negativebtn">Negatives are OFF</button>
+	</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Form Controls</title>
+		<style></style>
+		<script>
+		
+			function initialize()
+			{
+				inputContainer = document.getElementById("inputform");
+				greetingOutput= document.getElementById("greeting");
+				
+				firstName = "";
+				lastName = "";
+				eatPizza = false;
+				placeOfOrigin = "";
+			}
+			
+			function recordData()
+			{
+				firstName = inputContainer.fname.value;
+				lastName = inputContainer.lname.value;
+				eatsPizza = inputContainer.pizza.checked;
+				placeOfOrigin = inputContainer.origin.value;
+				
+				inputContainer.fname.value = "";
+				inputContainer.lname.value = "";
+				
+				display();
+			}
+			
+			function display()
+			{
+				greetingOutput.innerHTML = "Hello " + firstName + " " + lastName + "from " + placeOfOrigin + "! Welcome to our page!<br />";
+				
+				if(!eatsPizza)
+					greetingOutput.innerHTML += " It looks like you're not a fan of pizza.";
+				else
+					greetingOutput.innerHTML += " It looks like you're a fan of pizza.";
+			}
+		</script>
+	</head>
+	<body onload="initialize();">
+		<h1 id = "greeting"></h1>
+		<form id = "inputform">
+			First Name: <input name = "fname" type = "text" />
+			Last Name: <input name = "lname" type = "text" />
+			<label>
+				<input name = "pizza" type = "checkbox" />Check here if you like to eat pizza.
+			</label>
+			
+			<br /><br />
+			
+			Where are you from?
+			<label>
+				<input type = "radio" name = "origin" value = "Earth" />
+				Earth
+			</label>
+			<label>
+				<input type = "radio" name = "origin" value = "The Moon" />
+				The Moon
+			</label>
+			<label>
+				<input type = "radio" name = "origin" value = "Mars" />
+				Mars
+			</label>
+		</form>
+		<hr />
+		<button onclick = "recordData();">Click Here When Done</button>
+	</body>
+</html>

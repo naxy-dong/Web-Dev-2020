@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title></title>
+		<style></style>
+		<link rel = "stylesheet" href = "alchemy.css"; />
+		<script src = "alchemy.js"></script>
+		<script>
+			function initialize()
+			{
+				myOrganismOutput = document.getElementById("orgs");
+				firstSelectionOutput = document.getElementById("1st");
+				secondSelectionOutput = document.getElementById("2nd");
+				organismForm = document.getElementById("orgsform");
+				
+				myOrganisms = [ORGANISM_LIST[0], ORGANISM_LIST[1],
+				ORGANISM_LIST[2], ORGANISM_LIST[3]];
+				firstSelection = NONE;
+				secondSelection = NONE;
+				
+				display();
+			}
+
+			function display()
+			{
+				myOrganismOutput.innerHTML = "1: " + getOrganismData(myOrganisms[0], NAME);
+				
+				for (var i = 1; i < myOrganisms.length; i++)
+				{
+					myOrganismOutput.innerHTML += "<br />" + (i+1) +": " + getOrganismData(myOrganisms[i], NAME);
+					firstSelectionOutput.innerHTML = getOrganismData(firstSelection, NAME);
+					secondSelectionOutput.innerHTML = getOrganismData(secondSelection, NAME);
+				}
+			}
+			
+			function selectOrganism()
+			{
+				var idx = parseInt(organismForm.orgsel.value)-1;
+				
+				if(idx < 0 || idx >= myOrganisms.length)
+					return;
+					
+				if(firstSelection == NONE || (firstSelection != NONE && secondSelection != NONE))
+				{
+					firstSelection = myOrganisms[idx];
+					secondSelection = NONE;
+				}
+				else
+				{
+					secondSelection = myOrganisms[idx];
+					addNewOrganism();
+				}
+				
+				organismForm.orgsel.value = "";
+				display();
+			}
+			
+			function addNewOrganism()
+			{
+				var newOrganism = findCombo(firstSelection, secondSelection)
+				if(newOrganism != NONE)
+					if(myOrganisms.indexOf(newOrganism) < 0)
+						myOrganisms.push(newOrganism);
+			}
+			
+			function deleteOrganism()
+			{
+				var idx = parseInt(organismForm.orgsel.value)-1;
+				
+				if(idx < ORGANISM_OFFSET || idx >= myOrganisms.length)
+					return;
+					
+				myOrganisms.splice(idx, 1);
+				
+				organismForm.orgsel.value = "";
+				display();
+			}
+		</script>
+	</head>
+	<body onload = "initialize();">
+		<h1>
+			<span>Alchemy</span>
+		</h1>
+		<div class = "box">
+			<h2>My Organisms</h2>
+			<div id = "orgs"></div>
+			<hr />
+			<form id ="orgsform">
+				<input type = "number" name = "orgsel" />
+			</form>
+			<button onclick = "selectOrganism();">Select Organism</button>
+			<button onclick = "deleteOrganism();">Delete Organism</button>
+		</div>
+		
+		<hr />
+		
+		<p>
+			<span id = "1st"></span> AND <span id = "2nd"></span>
+		</p>
+	</body>
+</html>

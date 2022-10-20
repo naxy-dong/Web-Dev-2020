@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title>My Page</title>
+	<style>
+		html,
+		body {
+			height: 100%;
+			width: 100%;
+		}
+	</style>
+</head>
+
+<body onload="initialize();">
+	<h1> Codebreaker &emsp;&emsp;&emsp; Score:<font size=7 id="score">0</font>
+	</h1>
+	<font size=7 id="num1out">_</font> &emsp; <font size=7 id="num2out">_</font> &emsp; <font size=7 id="num3out">_
+	</font>
+	Timer <font size=7 id="counter"></font>
+	<div id="Win"></div>
+	<div id="lose"></div>
+	<div id="hint"></div>
+	<div id="randomEvent"></div>
+	<hr />
+	<button onclick="Place1();">1</button>
+	<button onclick="Place2();">2</button>
+	<button onclick="Place3();">3</button>
+	<button onclick="initialize();">start another game</button>
+	<button onclick="clean();">clear</button>
+
+	<ul id = "test">
+		<li>helkjklsdf</li>
+	</ul>
+	<font size=5>Your guesses</font>
+	<font size=5 id="guesses"></font>
+
+	<script src="script.js"></script>
+</body>
+
+</html>

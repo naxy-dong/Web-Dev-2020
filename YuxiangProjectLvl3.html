@@ -1,0 +1,344 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title></title>
+		<style>
+		body
+		{
+			background-repeat:no-repeat;
+			background-attachment:fixed;
+			background-size: 100% 100%;
+			background-color:grey;
+		}
+		
+		.button
+		{
+			background-color: #FF5349;
+			border: none;
+			color: black;
+			padding: 17px 26px;
+			text-decoration: none;
+			font-size: 20px;
+		}
+		
+		.button1
+		{
+			background-color:red;
+			border:black solid;
+			position:absolute;
+			top:35%;
+			left:90%;
+			
+		}
+		
+		.button2
+		{
+			background-color:red;
+			border:black solid;
+			position:absolute;
+			top:50%;
+			left:90%;
+		}
+		
+		h1
+		{
+			text-align:center;
+		}
+		
+		h3, h4
+		{
+			display:incline-block;
+			background-color:orange;
+			border:black solid;
+			padding:10px 10px;
+		}
+		
+		h3
+		{
+			position:absolute;
+			top:40%;
+		}
+		
+		h4
+		{
+			position:absolute;
+			top:50%;
+		}
+		
+		div
+		{
+			position:absolute;
+			top:93%;
+			background-color:orange;
+			font-size:26px;
+		}
+		table
+		{
+			position:absolute;
+			left:13.2%;
+			top:10%;
+			width:75%;
+			
+			background-color:crimson;
+			
+			border:20px solid #964B00;
+		}
+			
+		td
+		{
+			border:10px double gold;
+			padding:15px;
+			width:15%;
+			
+			background-color:#F6E6D6;
+			color:crimson;
+		}
+		
+		th
+		{
+			border:10px double #FF763B;
+		}
+		</style>
+		<script>
+			const TILE1VALUE=1,TILE2VALUE=2,TILE3VALUE=3,TILE4VALUE=4,TILE5VALUE=5,TILE6VALUE=6,TILE7VALUE=7,TILE8VALUE=8,TILE9VALUE=9,TILE10VALUE=10,TILE11VALUE=11,TILE12VALUE=12,TILE13VALUE=13,TILE14VALUE=14,TILE15VALUE=15,TILE16VALUE=16;
+			function initialize()
+			{
+				TilePosition1 = document.getElementById("tile1");
+				TilePosition2 = document.getElementById("tile2");
+				TilePosition3 = document.getElementById("tile3");
+				TilePosition4 = document.getElementById("tile4");
+				TilePosition5 = document.getElementById("tile5");
+				TilePosition6 = document.getElementById("tile6");
+				TilePosition7 = document.getElementById("tile7");
+				TilePosition8 = document.getElementById("tile8");
+				TilePosition9 = document.getElementById("tile9");
+				TilePosition10 = document.getElementById("tile10");
+				TilePosition11 = document.getElementById("tile11");
+				TilePosition12 = document.getElementById("tile12");
+				TilePosition13 = document.getElementById("tile13");
+				TilePosition14 = document.getElementById("tile14");
+				TilePosition15 = document.getElementById("tile15");
+				TilePosition16 = document.getElementById("tile16");
+				
+				SelectedTile="";
+				FirstTile="";
+				EmptyTile=TilePosition16;
+				EmptyTileValue=16;
+				
+				NumOfMovesOutput=document.getElementById("MovesOutput");
+				BeginToCountMoves=false;
+				
+				UserInstructionMsg=document.getElementById("InstructionsOutput");
+				UserInstructionMsg.innerHTML="";
+				ButtonMsg=document.getElementById("ButtonMsgOutput");
+				ButtonMsg.innerHTML="Click me for instructions!";
+				InstructionNeeded=false;
+				
+				WinMsg=document.getElementById("WinMsgOutput");
+				WinMsg.innerHTML="";
+			}
+			
+			function SwapTiles()
+			{
+				if(BeginToCountMoves)
+				{
+					FirstTileValue=ChosenTileValue;
+					if(FirstTileValue-1==EmptyTileValue || FirstTileValue+1==EmptyTileValue || FirstTileValue-4==EmptyTileValue || FirstTileValue+4==EmptyTileValue)//Check if the tile is adjacent or not
+					{
+						var Temp=SelectedTile.innerHTML;
+						SelectedTile.innerHTML="";
+						EmptyTile.innerHTML=Temp;
+						
+						EmptyTile=SelectedTile;
+						EmptyTileValue=FirstTileValue;
+						NumOfMovesOutput.innerHTML++;
+					}
+					if((TilePosition1.innerHTML=="1")&&(TilePosition2.innerHTML=="2")&&(TilePosition3.innerHTML=="3")&&(TilePosition4.innerHTML=="4")&&(TilePosition5.innerHTML=="5")&&(TilePosition6.innerHTML=="6")&&(TilePosition7.innerHTML=="7")&&(TilePosition8.innerHTML=="8")&&(TilePosition9.innerHTML=="9")&&(TilePosition10.innerHTML=="10")&&(TilePosition11.innerHTML=="11")&&(TilePosition12.innerHTML=="12")&&(TilePosition13.innerHTML=="13")&&(TilePosition14.innerHTML=="14")&&(TilePosition15.innerHTML=="15")&&(TilePosition16.innerHTML==""))
+					{
+						Win();
+					}
+				}
+			}
+			
+			function StartGame()
+			{
+				BeginToCountMoves=true;
+				RandomizePuzzle();
+				NumOfMovesOutput.innerHTML="0";
+				WinMsg.innerHTML="";
+			}
+			
+			function ResetGame()
+			{
+				BeginToCountMoves=false;
+				TilePosition1.innerHTML="1";
+				TilePosition2.innerHTML="2";
+				TilePosition3.innerHTML="3";
+				TilePosition4.innerHTML="4";
+				TilePosition5.innerHTML="5";
+				TilePosition6.innerHTML="6";
+				TilePosition7.innerHTML="7";
+				TilePosition8.innerHTML="8";
+				TilePosition9.innerHTML="9";
+				TilePosition10.innerHTML="10";
+				TilePosition11.innerHTML="11";
+				TilePosition12.innerHTML="12";
+				TilePosition13.innerHTML="13";
+				TilePosition14.innerHTML="14";
+				TilePosition15.innerHTML="15";
+				TilePosition16.innerHTML="";
+			}
+			function Win()
+			{
+				WinMsg.innerHTML="Great Job! You successfully place the tiles back in order. Now try again by clicking the reset button to begin your new puzzle!";
+			}
+			function ShowInstruction()
+			{
+				if(InstructionNeeded==false)
+				{
+					UserInstructionMsg.innerHTML="Sliding game is a game where the user puts numbers in order by moving “tiles” around. Press the " + "<u>Start</u>" + " button to create and begin your new game and Press the " + "<u>Reset</u>" + " button to stop counting moves. The computer will count each move you make. Good Luck!";
+					ButtonMsg.innerHTML="Click me to close the instructions!";
+					InstructionNeeded=true;
+				}
+				else
+				{
+					UserInstructionMsg.innerHTML="";
+					ButtonMsg.innerHTML="Click me for instructions!";
+					InstructionNeeded=false;
+				}
+			}
+			
+			function RandomizePuzzle()
+			{
+				TOP=1;
+				BOTTOM=2;
+				LEFT=3;
+				RIGHT=4;
+				for(i = 0; i<1000; i++)//Randomize the movement 1000 times
+				{
+					NumPossibleDirections=4;
+					PossibleDirections=[TOP,BOTTOM,LEFT,RIGHT];
+					
+					if(EmptyTileValue-4<1)//Checks for if the tile is one of the top 4 tiles
+					{
+						PossibleDirections.splice(0,1);//Eliminate TOP option
+						NumPossibleDirections--;
+					}
+					if(EmptyTileValue+4>16)
+					{
+						if(NumPossibleDirections==4)//Checks for if the tile is one of the bottom 4 tiles
+						{
+							PossibleDirections.splice(1,1);//Eliminate BOTTOM option
+						}
+						else
+						{
+							PossibleDirections.splice(0,1);//Eliminate BOTTOM option
+						}
+						NumPossibleDirections--;
+					}
+					if(EmptyTileValue%4==1)//Checks for if the tile is one of the left 4 tiles
+					{
+						if(NumPossibleDirections==4)
+						{
+							PossibleDirections.splice(2,1);//Eliminate LEFT option
+						}
+						else
+						{
+							PossibleDirections.splice(1,1);//Eliminate LEFT option
+						}
+						NumPossibleDirections--;
+					}
+					if(EmptyTileValue%4==0)//Checks for if the tile is one of the right 4 tiles
+					{
+						if(NumPossibleDirections==4)
+						{
+							PossibleDirections.splice(3,1);//Eliminate RIGHT option
+						}
+						else
+						{
+							PossibleDirections.splice(2,1);//Eliminate RIGHT option
+						}
+						NumPossibleDirections--;
+					}
+					
+					RndIndex=Math.random();
+					RndIndex*=NumPossibleDirections;
+					RndIndex=parseInt(RndIndex);
+					//This could only result 3 outcomes
+					//If NumPossibleDirections=4, then the index will fall under numbers 0,1,2,3
+					//If NumPossibleDirections=3, then the index will fall under numbers 0,1,2
+					//If NumPossibleDirections=2, then the index will fall under numbers 0,1
+					
+					RandomDirections=PossibleDirections[RndIndex];
+					if(RandomDirections==TOP)
+					{
+						EmptyTileValue-=4;
+					}
+					if(RandomDirections==BOTTOM)
+					{
+						EmptyTileValue+=4;
+					}
+					if(RandomDirections==LEFT)
+					{
+						EmptyTileValue-=1;
+					}
+					if(RandomDirections==RIGHT)
+					{
+						EmptyTileValue+=1;
+					}
+					TilePositionList=[TilePosition1,TilePosition2,TilePosition3,TilePosition4,TilePosition5,TilePosition6,TilePosition7,TilePosition8,TilePosition9,TilePosition10,TilePosition11,TilePosition12,TilePosition13,TilePosition14,TilePosition15,TilePosition16];
+					
+					FirstTile=EmptyTile;
+					SecondTile=TilePositionList[EmptyTileValue-1];
+					
+					var Temp=FirstTile.innerHTML;
+					FirstTile.innerHTML=SecondTile.innerHTML;
+					SecondTile.innerHTML=Temp;
+					EmptyTile=SecondTile;
+				}
+			}
+		</script>
+	</head>
+	<body onload = "initialize()" background="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0jZ7FkQGyYVsHrErTkJKA5zskrMdvCaSbXf4ZXFEdYJWT-9FYSg&s">
+		<h1>
+			<table>
+				<tr>
+					<th colspan = "1"><font size = "6">Slider Puzzle</font></th>
+					<th colspan = "3"><font size = "3">
+					<button onclick = "ShowInstruction();" id = "ButtonMsgOutput" class="button"></button>
+					<h2><p id = "InstructionsOutput"></p></h2>
+					</font></th>
+				</tr>
+				<tr>
+					<td onclick = "SelectedTile=TilePosition1; ChosenTileValue=TILE1VALUE; SwapTiles();" id="tile1">1</td>
+					<td onclick = "SelectedTile=TilePosition2; ChosenTileValue=TILE2VALUE; SwapTiles();" id="tile2">2</td>
+					<td onclick = "SelectedTile=TilePosition3; ChosenTileValue=TILE3VALUE; SwapTiles();" id="tile3">3</td>
+					<td onclick = "SelectedTile=TilePosition4; ChosenTileValue=TILE4VALUE; SwapTiles();" id="tile4">4</td>
+				</tr>
+				<tr>
+					<td onclick = "SelectedTile=TilePosition5; ChosenTileValue=TILE5VALUE; SwapTiles();" id="tile5">5</td>
+					<td onclick = "SelectedTile=TilePosition6; ChosenTileValue=TILE6VALUE; SwapTiles();" id="tile6">6</td>
+					<td onclick = "SelectedTile=TilePosition7; ChosenTileValue=TILE7VALUE; SwapTiles();" id="tile7">7</td>
+					<td onclick = "SelectedTile=TilePosition8; ChosenTileValue=TILE8VALUE; SwapTiles();" id="tile8">8</td>
+				</tr>
+				<tr>
+					<td onclick = "SelectedTile=TilePosition9; ChosenTileValue=TILE9VALUE; SwapTiles();" id="tile9">9</td>
+					<td onclick = "SelectedTile=TilePosition10; ChosenTileValue=TILE10VALUE; SwapTiles();" id="tile10">10</td>
+					<td onclick = "SelectedTile=TilePosition11; ChosenTileValue=TILE11VALUE; SwapTiles();" id="tile11">11</td>
+					<td onclick = "SelectedTile=TilePosition12; ChosenTileValue=TILE12VALUE; SwapTiles();" id="tile12">12</td>
+				</tr>
+				<tr>
+					<td onclick = "SelectedTile=TilePosition13; ChosenTileValue=TILE13VALUE; SwapTiles();" id="tile13">13</td>
+					<td onclick = "SelectedTile=TilePosition14; ChosenTileValue=TILE14VALUE; SwapTiles();" id="tile14">14</td>
+					<td onclick = "SelectedTile=TilePosition15; ChosenTileValue=TILE15VALUE; SwapTiles();" id="tile15">15</td>
+					<td onclick = "SelectedTile=TilePosition16; ChosenTileValue=TILE16VALUE; SwapTiles();" id="tile16"></td>
+				</tr>
+			</table>
+		</h1>
+		<button onclick = "StartGame();" class="button button1"><strong>Start</strong></button>
+		<button onclick = "ResetGame();" class="button button2"><strong>Reset</strong></button>
+		<h3>Moves:</h3>
+		<h4 id="MovesOutput">0</h4>
+		<div id="WinMsgOutput"></div>
+	</body>
+</html>

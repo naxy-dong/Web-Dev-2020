@@ -1,29 +1,24 @@
 function initialize() {
     ////////////////////STUFF
     UserInstructionMsg = document.getElementById("InstructionsOutput");
-    UserInstructionMsg.innerHTML = "";
     ButtonMsg = document.getElementById("ButtonMsgOutput");
-    ButtonMsg.innerHTML = "Click me for instructions!";
-    InstructionNeeded = false;
-
     scoreOutput = document.getElementById("clicksOutput");
-    scoreOutput.innerHTML = 0;
-
     winMsg = document.getElementById("win");
+    InstructionNeeded = false;
+    scoreOutput.innerHTML = 0;
+    UserInstructionMsg.innerHTML = "";
+    ButtonMsg.innerHTML = "Click me for instructions!";
     ////////////////////THE ACUTAL GAME
     cardarray = []
+    flipped = []
+    flipbackimage = "cardimages/back-red-75-1.png"
     for (i = 1; i <= 16; i++) {
         cardarray.push(document.getElementById("card" + i));
-    }
-    flipbackimage = "cardimages/back-red-75-1.png"
-
-    flipped = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
-    for (i = 0; i < 16; i++) {
-        cardarray[i].src = flipbackimage;
+        flipped[i-1] = false
+        cardarray[i-1].src = flipbackimage;
     }
     array = []
     for (i = 13; i >= 6; i--) {
-        str = ""
         str = "cardimages/" + i + "-0.png";
         array.push(str)
         array.push(str)
@@ -37,7 +32,7 @@ function initialize() {
 }
 
 function win() {
-    for (i = 0; i < 16; i++) {
+    for (let i = 0; i < 16; i++) {
         if (flipped[i] == false) {
             return false;
         }
@@ -78,26 +73,21 @@ function changeCard(cardNumber) {
 
 function match() {
     if (cardarray[index1].src == cardarray[index2].src) {
-        flipped[index1] = true;
-        flipped[index2] = true;
-        index1 = -1;
-        index2 = -1;
         if (win() == true) {
-            console.log("You win!!")
+            result()
         }
     }
     else {
         cardarray[index1].src = flipbackimage;
         cardarray[index2].src = flipbackimage;
-        flipped[index1] = false
-        flipped[index2] = false
-        index1 = -1;
-        index2 = -1;
     }
+    flipped[index1] = !flipped[index1]
+    flipped[index2] = !flipped[index2]
+    index1 = -1;
+    index2 = -1;
 }
 
-
-function win() {
+function result() {
     if (scoreOutput.innerHTML == 16) {
         winMsg.innerHTML = "Unbelievable! A PERFECT score!";
     }
@@ -117,11 +107,10 @@ function Instruction() {
     if (InstructionNeeded == false) {
         UserInstructionMsg.innerHTML = "Matching game tests your memory in an entertaining way, click two images to find a match. Click again to confirm the matches. If the images match, it stays revealed. Find all the matches to win the game and try to minimize the number of clicks. Click the reset button to restart the game. Good Luck!.";
         ButtonMsg.innerHTML = "Click me to close the instructions!";
-        InstructionNeeded = true;
     }
     else {
         UserInstructionMsg.innerHTML = "";
         ButtonMsg.innerHTML = "Click me for instructions!";
-        InstructionNeeded = false;
     }
+    InstructionNeeded = !InstructionNeeded;
 }

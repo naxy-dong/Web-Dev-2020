@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Yuxiang Lvl 2 improved project</title>
+	<link rel = "stylesheet" href = "style.css">
+</head>
+
+<body onload="initialize();">
+	<div>
+		Matching Game
+		<button onclick="Instruction();" id="ButtonMsgOutput">Click me for Instructions!</button>
+		<p id="InstructionsOutput"></p>
+	</div>
+	<div>
+		<img onclick="changeCard(1)" id="card1">
+		<img onclick="changeCard(2)" id="card2">
+		<img onclick="changeCard(3)" id="card3">
+		<img onclick="changeCard(4)" id="card4">
+	</div>
+	<div>
+		<img onclick="changeCard(5)" id="card5">
+		<img onclick="changeCard(6)" id="card6">
+		<img onclick="changeCard(7)" id="card7">
+		<img onclick="changeCard(8)" id="card8">
+	</div>
+	<div>
+		<img onclick="changeCard(9)" id="card9">
+		<img onclick="changeCard(10)" id="card10">
+		<img onclick="changeCard(11)" id="card11">
+		<img onclick="changeCard(12)" id="card12">
+	</div>
+	<div>
+		<img onclick="changeCard(13)" id="card13">
+		<img onclick="changeCard(14)" id="card14">
+		<img onclick="changeCard(15)" id="card15">
+		<img onclick="changeCard(16)" id="card16">
+	</div>
+	<p>
+		<font size=5>Clicks:</font>
+		<font size=5 id="clicksOutput">0</font>
+		&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+		<button onclick="initialize();">Reset</button>
+		&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+	</p>
+	<p>
+		<font size=5 id="win"></font>
+	</p>
+	<script src = "script.js"></script>
+</body>
+
+</html>

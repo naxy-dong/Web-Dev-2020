@@ -1,0 +1,208 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Thirty One</title>
+		<style>
+			table
+			{
+				border:thick solid grey;
+				border-collapse:collapse;
+				width:25%;
+			}
+			
+			th,td
+			{
+				border:thin solid black;
+				padding:8px;
+				width:33%;
+			}
+			
+			table
+			{
+				position:absolute;
+				left:1%;
+				top: 35%;
+				text-align:center;
+			}
+			
+			table+table
+			{
+				left:38%;
+				top:1%;
+			}
+			
+			table+table+table
+			{
+				left:74%;
+				top:35%
+			}
+			
+			table+table+table+table
+			{
+				left:38%;
+				top:65%;
+			}
+			
+			table+table+table+table+table
+			{
+				left:38%;
+				top:35%;
+			}
+		</style>
+		<script src = "card deck.js"></script>
+		<script src = "score.js"></script>
+		<script src = "strike.js"></script>
+		<script>
+			const RED_BACK = "back-red-75-1.png";
+			
+			function initialize()
+			{
+				UserContainer = document.getElementById("UserCon");
+				AIContainer1 = document.getElementById("AICon1");
+				AIContainer2 = document.getElementById("AICon2");
+				AIContainer3 = document.getElementById("AICon3");
+				
+				UserScore = document.getElementById("UserSc");
+				AI1Score = document.getElementById("AI1Sc");
+				AI2Score = document.getElementById("AI2Sc");
+				AI3Score = document.getElementById("AI3Sc");
+				
+				
+				UserKnock = document.getElementById("UserKn");
+				AI1Knock = document.getElementById("AI1Kn");
+				AI2Knock = document.getElementById("AI2Kn");
+				AI3Knock = document.getElementById("AI3Kn");
+				
+				
+				UserStrike = document.getElementById("UserSt");
+				AI1Strike = document.getElementById("AI1St");
+				AI2Strike = document.getElementById("AI2St");
+				AI3Strike = document.getElementById("AI3St");
+				
+				UserDeck = [];
+				AIDeck1 = [];
+				AIDeck2 = [];
+				AIDeck3 = [];
+				DiscardImage = document.getElementById("DiscardImg");
+				DiscardMessage = document.getElementById("DiscardMsg");
+				
+				reset();
+			}
+			
+			/*
+				Description: reset()
+				1. shuffle the deck
+				2. clears all deck from the players
+				3. Add 3 cards to each player
+				4. Add a new card on discard pile
+			*/
+			
+			function reset()
+			{
+				deck = shuffleDeck(generateStandardDeck()); // shuffles the deck.
+				
+				PlayerDecks = [UserDeck, AIDeck1, AIDeck2, AIDeck3];
+				ScoreMsgList = [UserScore, AI1Score, AI2Score, AI3Score];
+				KnockMsgList = [UserKnock, AI1Knock, AI2Knock, AI3Knock];
+				StrikeMsgList = [UserStrike, AI1Strike, AI2Strike, AI3Strike];
+				PlayerContainers = [UserContainer, AIContainer1, AIContainer2, AIContainer3];
+				
+				for (var i=0; i<PlayerDecks.length; i++)//go through each player
+				{
+					PlayerDecks[i] = []; //clears all deck and containers from the players
+					ScoreMsgList[i].innerHTML = "?";
+					KnockMsgList[i].innerHTML = "false";
+					StrikeMsgList[i].innerHTML = 0;
+					
+					//Sometimes removing 3 cards is not enough, since the user might reset the game when someone's hand has 4 cards.
+					while(PlayerContainers[i].children.length !== 0)
+					{
+						PlayerContainers[i].removeChild(PlayerContainers[i].firstChild);
+					}
+					
+					for (var j=0; j<3; j++)// add 3 cards to each Player.
+					{
+						DealCard(PlayerDecks[i], PlayerContainers[i]); 
+					}
+				}
+				
+				DiscardedCard = deck.shift(); // add one card to the discard pile
+				DiscardImage.src = DiscardedCard.src;
+			}
+		</script>
+	</head>
+	<body onload = "initialize();">
+		<a href = "rule.html"><font size = 6>Rule Page</font></a>
+		<table>
+			<tr>
+				<th colspan = "3">AI1</th>
+			</tr>
+			<tr>
+				<td colspan = "3" id="AICon1"></td>
+			</tr>
+			<tr>
+				<td>score: <span id = "AI1Sc">?</span></td>
+				<td>knock: <span id = "AI1Kn">false</span></td>
+				<td>strike: <span id = "AI1St">0</span></td>
+			</tr>
+		</table>
+		
+		<table>
+			<tr>
+				<th colspan = "3">AI2</th>
+			</tr>
+			<tr>
+				<td colspan = "3" id="AICon2"></td>
+			</tr>
+			<tr>
+				<td>score: <span id = "AI2Sc">?</span></td>
+				<td>knock: <span id = "AI2Kn">false</span></td>
+				<td>strike: <span id = "AI2St">0</span></td>
+			</tr>
+		</table>
+		
+		<table>
+			<tr>
+				<th colspan = "3">AI3</th>
+			</tr>
+			<tr>
+				<td colspan = "3" id="AICon3"></td>
+			</tr>
+			<tr>
+				<td>score: <span id = "AI3Sc">?</span></td>
+				<td>knock: <span id = "AI3Kn">false</span></td>
+				<td>strike: <span id = "AI3St">0</span></td>
+			</tr>
+		</table>
+		
+		<table>
+			<tr>
+				<th colspan = "3">User</th>
+			</tr>
+			<tr>
+				<td colspan = "3" id="UserCon"></td>
+			</tr>
+			<tr>
+				<td>score: <span id = "UserSc">?</span></td>
+				<td>knock: <span id = "UserKn">false</span></td>
+				<td>strike: <span id = "UserSt">0</span></td>
+			</tr>
+		</table>
+		
+		<table>
+			<tr>
+				<th>Deck</th>
+				<th>Discard</th>
+			</tr>
+			<tr>
+				<td><img onclick = "DealCard(PlayerDecks[0], UserContainer);" src = "cardimages/back-red-75-1.png" /></td>
+				<td><img onclick = "DealDiscardedCard(PlayerDecks[0], UserContainer);" id = "DiscardImg"></img></td>
+			</tr>
+		</table>
+		<button onclick = "RevealCard();" >reveal card</button>
+		<button onclick = "RevealScore();" >Reveal Score</button>
+		<button onclick = "Strike();" >Strike</button>
+		<button onclick = "reset();">Reset game</button>
+		<button>knock</button>
+	</body>
+</html>

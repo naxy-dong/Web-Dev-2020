@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title></title>
+		<style>
+			div
+			{
+				font: bold 24pt comic sans ms;
+				text-decoration: underline green wavy;
+			}
+		</style>
+		<script>
+			function initialize()
+			{
+				textOutput = document.getElementById("textdiv");
+				fontSizeOutput= document.getElementById("sizeout");
+				
+				fontSize = 24;
+			}
+			function modifyFontSize(mod)
+			{
+				fontSize += mod;
+				
+				if (fontSize < 4)
+				{
+					fontSize = 4;
+				}
+				
+				display();
+			}
+			function display()
+			{
+				fontSizeOutput.innerHTML = fontSize;
+				textOutput.style.fontSize = fontSize + "pt";
+			}
+
+		</script>
+	</head>
+	
+	<body onload="initialize();">
+		<div id = "textdiv">
+			I am a wonderful example of how fonts work!
+		</div>
+		
+		<hr />
+		
+		<p>
+			<div>Current font size: <span id = "sizeout"></span> point </div>
+			<button onclick = "modifyFontSize(1);">Font Size ++</button>
+			<button onclick = "modifyFontSize(-1);">Font Size --</button>
+	</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Card Test</title>
+		<style></style>
+		
+		<script src = "utilities.js"></script>
+		<script src = "playingcards.js"></script>
+		<script>
+			function initialize()
+			{
+				cardsOutput = document.getElementById("cardsout");
+				
+				theDeck = generateStandardDeck();
+				theDeck.shuffleDeck();
+				
+				showDeck();
+			}
+			
+			function showDeck()
+			{
+				while(theDeck.length > 0)
+				{
+					var tmpImg = document.createElement("img");
+					
+					var tmpCard = theDeck.shift();
+					tmpImg.src = "cardimages/" + tmpCard.imageFilename;
+					
+					cardsOutput.appendChild(tmpImg);
+				}
+			}
+		</script>
+	</head>
+	<body onload = "initialize()">
+		<div id = "cardsout"></div>
+	</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title></title>
+		<style>
+			.titlecontainer
+			{
+				display:block;
+				text-align:center;
+			}
+			
+			.titlecontent
+			{
+				display:inline;
+				padding: 3px 6px 3px 6px;
+			}
+			
+			body
+			{
+				text-align:center;
+			}
+			
+			#mainimg
+			{
+				height: 500px;
+			}
+			
+			#thumbs img
+			{
+				width:10%;
+				padding:5px;
+			}
+		</style>
+		<script>
+			function initialize()
+			{
+				mainImage = document.getElementById("mainimg");
+				thumbnailContainer = document.getElementById("thumbs");
+				
+				loadImages();
+			}
+			
+			function buildThumbnailElements(thumbs)
+			{
+				for (var i in thumbs)
+				{
+					var tmpImg = document.createElement("img");
+					tmpImg.src = "images/" + thumbs[i];
+					
+					tmpImg.addEventListener("click", function()
+					{
+						mainImage.src = this.src;
+					});
+					
+					thumbnailContainer.appendChild(tmpImg);
+				}
+			}
+			function loadImages(){
+				var imageRequest = new XMLHttpRequest();
+				imageRequest.open("GET", "http://localhost:8081/getimages", true);
+				imageRequest.onreadystatechange = function(){
+					if (imageRequest.readyState == 4){
+						var thumbs = imageRequest.responseText;
+						thumbs = thumbs.split(',');
+						buildThumbnailElements(thumbs);
+					}
+				}
+				imageRequest.send();
+			}
+		</script>
+	</head>
+	<body onload = "initialize();">
+		<h1 class = "titlecontainer"><span class = "titlecontent">Gallery of Heroes</span></h1>
+		<img id = "mainimg" />
+		<div id = "thumbs"></div>
+	</body>
+</html>

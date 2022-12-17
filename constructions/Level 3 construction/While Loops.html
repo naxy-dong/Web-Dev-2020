@@ -1,0 +1,134 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title></title>
+		<style></style>
+		<script>
+			const TWIX = 0, EGG = 1, TWIZZLER = 2, AIRHEAD = 3, RINGPOP = 4;
+			function initialize()
+			{
+				numTwixOutput = document.getElementById("numtwix");
+				numScreamEggsOutput = document.getElementById("numeggs");
+				numTwizzlersOutput = document.getElementById("numtwizzlers");
+				numAirheadsOutput = document.getElementById("numairheads");
+				numRingPopsOutput = document.getElementById("numringpops");
+				candyLogOutput = document.getElementById("candylog");
+				
+				numTwix = parseInt(Math.random() * 11);
+				numScreamEggs = parseInt(Math.random() * 11);
+				numTwizzlers = parseInt(Math.random() * 11);
+				numAirheads = parseInt(Math.random() * 11);
+				numRingPops = parseInt(Math.random() * 11);
+				
+				candyLog = "";
+				
+				display();
+			}
+			
+			function display()
+			{
+				numTwixOutput.innerHTML = numTwix;
+				numScreamEggsOutput.innerHTML = numScreamEggs;
+				numTwizzlersOutput.innerHTML = numTwizzlers;
+				numAirheadsOutput.innerHTML = numAirheads;
+				numRingPopsOutput.innerHTML = numRingPops;
+				
+				candyLogOutput.innerHTML = candyLog;
+			}
+			
+			function giveCandy()
+			{
+				if(numTwix + numScreamEggs + numTwizzlers + numAirheads + numRingPops == 0)
+				{
+					candyLog = "You are all out of candy.<br />" + candyLog;
+				}
+				else
+				{
+					var badSelection = true;
+				
+					while(badSelection)
+					{
+						var selectedCandy = parseInt(Math.random() * 5);
+				
+						if(selectedCandy == TWIX)
+						{
+							candyName = "Twix";
+							if(numTwix > 0)
+							{
+								numTwix--;
+								badSelection = false;
+							}
+						}
+						else
+						{
+							if(selectedCandy == EGG)
+							{
+								candyName = "Twizzler";
+								if(numScreamEggs > 0)
+								{
+									numScreamEggs--;
+									badSelection = false;
+								}
+							}
+							else
+							{
+								if(selectedCandy == TWIZZLER)
+								{	
+									candyName = "Twizzler";
+									if(numTwizzlers > 0)
+									{
+										numTwizzlers--;
+										badSelection = false;
+									}
+								}
+								else
+								{
+									if(selectedCandy == AIRHEAD)
+									{
+										candyName = "Airhead";
+										if(numAirheads > 0)
+										{
+											numAirheads--;
+											badSelection = false;
+										}
+									}
+									else
+									{
+										candyName = "Ring Pop";
+										if(numRingPops > 0)
+										{
+											numRingPops--;
+											badSelection = false;
+										}
+									}
+								}
+							}
+						}
+						
+						if (badSelection)
+						{
+							candyLog = "You tried to give out a(n) " + candyName + ", but you have none left.<br />" + candyLog;
+						}
+						else
+						{
+							candyLog = "You gave out a " + candyName + ".<br />" + candyLog;
+						}
+					}
+				}
+				display();
+			}
+		</script>
+	</head>
+	<body onload="initialize();">
+		Twix: <span id = "numtwix"></span><br />
+		Scream Eggs: <span id = "numeggs"></span><br />
+		Twizzlers: <span id = "numtwizzlers"></span><br />
+		Airheads: <span id = "numairheads"></span><br />
+		Ring Pops: <span id = "numringpops"></span><br /><br />
+		<button onclick = "giveCandy();">Give out Candy</button>
+		
+		<hr />
+		
+		<div id="candylog">0</div>
+	</body>
+</html>

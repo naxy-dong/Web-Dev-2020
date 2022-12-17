@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title></title>
+		<style>
+			div
+			{
+				border:thick double black;
+			}
+			
+			textarea
+			{
+				width:50%;
+			}
+		</style>
+		<script>
+			const INVALID_CHARS = "<>@#*";
+			function initialize()
+			{
+				logoutputBox = document.getElementById("logoutput");
+				logFormObject = document.getElementById("logform");
+				log = "Log -- ";
+			}
+			
+			function addMessage(msg)
+			{
+				/*
+				if(isValid(msg))
+					log += "<br />" + msg;
+				else
+					log += "<br />Invalid Message Entered!";
+				*/
+				
+				log +="<br />" + validate(msg);
+				display();
+			}
+			
+			function display()
+			{
+				logoutputBox.innerHTML = log;
+			}
+			
+			function isValid(msg)
+			{
+				for(var i = 0; i< INVALID_CHARS.length; i++)
+				{
+					if(msg.indexOf(INVALID_CHARS.charAt(i)) >= 0)
+						return false;
+				}
+				
+				return true;
+			}
+			
+			function validate(msg)
+			{
+			
+				for (var i = 0; i <INVALID_CHARS.length; i++)
+				{
+					var charIdx = msg.indexOf(INVALID_CHARS.charAt(i));
+					while(charIdx >= 0)
+					{
+						msg = msg.substring(0, charIdx) + msg.substring(charIdx + 1);
+						charIdx = msg.indexOf(INVALID_CHARS.charAt(i));
+					}
+				}
+				
+				return msg;
+			}
+		</script>
+	</head>
+	<body onload = "initialize()">
+		<h2>Daily Log</h2>
+		<form id = "logform">
+			<textarea name = "loginput"></textarea>
+		</form>
+		
+		<button onclick = "addMessage(logFormObject.loginput.value);">
+		Add To Log
+		</button>
+		
+		<hr />
+		
+		<div id = "logoutput">Log -- </div>
+	</body>
+</html>

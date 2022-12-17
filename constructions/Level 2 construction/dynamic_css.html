@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title></title>
+		<style>
+			div
+			{
+				color:black;
+				background-color:orange;
+			}
+		</style>
+		<script>
+			function initialize()
+			{
+				halloweenText = document.getElementById("colordiv");
+				
+				fore="black";
+				back="orange";
+				
+				textWidth = 100;
+			}
+			function toggleColor()
+			{
+				var tmp = fore;
+				fore = back;
+				back = tmp;
+				
+				display();
+			}
+			function display()
+			{
+				halloweenText.style.color = fore;
+				halloweenText.style.backgroundColor = back;
+				halloweenText.style.width = textWidth + "%";
+			}
+			function changeWidth(w)
+			{
+				textWidth = w;
+				display();
+			}
+		</script>
+	</head>
+	
+	<body onload="initialize();">
+		<div id = "colordiv">
+		 Click the button to switch me from black to orange and back
+		 again and again. Happy Halloween.
+		</div>
+		
+		<p>
+			<button onclick = "toggleColor();">Toggle Colors</button>
+			<button onclick = "changeWidth(25);">25% Width</button>
+			<button onclick = "changeWidth(50);">50% Width</button>
+			<button onclick = "changeWidth(75);">75% Width</button>
+			<button onclick = "changeWidth(100);">100% Width</button>
+		</p>
+	</body>
+</html>

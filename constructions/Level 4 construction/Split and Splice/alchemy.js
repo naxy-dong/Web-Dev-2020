@@ -3,6 +3,7 @@ const ORGANISM_LIST = ["Air;None;None","Earth;None;None","Fire;None;None",
 "Lava;Earth;Fire","Swamp;Earth;Water","Mud;Dust;Water","Life;Energy;Swamp",
 "Bacteria;Life;Swamp","Fire Elemental;Fire;Life","Stone;Air;Lava",
 "Metal;Stone;Fire","Electricity;Energy;Metal","Oxygen;Water;Eletricity"];
+
 const ORGANISM_OFFSET = 4;
 const NAME = 0, PARENT_1 = 1, PARENT_2 = 2;
 const NONE = "None";

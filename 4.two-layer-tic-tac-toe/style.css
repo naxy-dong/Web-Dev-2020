@@ -1,0 +1,52 @@
+h1
+{
+    border:1px solid black;
+    margin:10px 400px 10px 400px;
+    color:white;
+}
+body
+{
+    text-align:center;
+    background-color:cornflowerblue;
+}
+
+table
+{
+    margin-left:auto;
+    margin-right:auto;
+    width:500px;
+    height:500px;
+}
+
+table.interface
+{
+    position:absolute;
+    top:40%; 
+    left:5%;
+    width:100px;
+    height:200px;
+}
+
+td
+{
+    width:230px;
+    border:10px solid white;
+}
+
+p
+{
+    text-align:justify;
+    margin-left:150px;
+    margin-right:150px;
+}
+img
+{
+    height:150px; 
+    width:150px;
+}
+
+img.interface
+{
+    height:100px; 
+    width:100px;
+}

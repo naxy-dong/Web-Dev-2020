@@ -1,0 +1,95 @@
+body
+{
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+    background-size: 100% 100%;
+    background-color:grey;
+}
+
+.button
+{
+    background-color: #FF5349;
+    border: none;
+    color: black;
+    padding: 17px 26px;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.button1
+{
+    background-color:red;
+    border:black solid;
+    position:absolute;
+    top:35%;
+    left:90%;
+    
+}
+
+.button2
+{
+    background-color:red;
+    border:black solid;
+    position:absolute;
+    top:50%;
+    left:90%;
+}
+
+h1
+{
+    text-align:center;
+}
+
+h3, h4
+{
+    display:incline-block;
+    background-color:orange;
+    border:black solid;
+    padding:10px 10px;
+}
+
+h3
+{
+    position:absolute;
+    top:40%;
+}
+
+h4
+{
+    position:absolute;
+    top:50%;
+}
+
+div
+{
+    position:absolute;
+    top:93%;
+    background-color:orange;
+    font-size:26px;
+}
+table
+{
+    position:absolute;
+    left:13.2%;
+    top:10%;
+    width:75%;
+    
+    background-color:crimson;
+    
+    border:20px solid #964B00;
+}
+    
+td
+{
+    border:10px double gold;
+    padding:15px;
+    width:15%;
+    
+    background-color:#F6E6D6;
+    color:crimson;
+}
+
+th
+{
+    border:10px double #FF763B;
+}

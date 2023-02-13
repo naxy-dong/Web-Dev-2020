@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style> 
+            body{
+                font-size: 24pt;
+            }
+			div
+			{
+				width: 100px;
+				height: 100px;
+				border-radius:50%;
+				background-color: red;
+				position:absolute;
+				animation-iteration-count: infinite;
+				animation-duration: 4s;
+				animation-timing-function: ease-in-out;
+			}
+			span
+			{
+				width: 500px;
+				height: 500px;
+				border-radius:50%;
+				position:absolute;
+				border:solid 50px blue;
+				padding:150px;
+			}
+			div#circle1
+			{
+				animation-name: Circle1;
+			}
+			
+			/*@keyframes Circle1 
+			{
+				0%   {left:350px; top:0px;}
+				50%  {left:350px; top:700px;}
+				100% {left:350px; top:0px;}
+			}*/
+
+			@keyframes Circle1{
+				from {
+				/* pushes the sun down past the viewport */
+					transform: translateY(110vh);
+					background-color: red;
+					filter: brightness(75%);
+				}
+				to {
+				  /* returns the sun to its default position */
+				  transform: translateY(0);
+				  background-color: orange;
+				}
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="circle1">1</div>
+
+	</body>
+</html>

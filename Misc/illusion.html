@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style> 
+            body{
+                font-size: 40pt;
+            }
+			div
+			{
+				width: 100px;
+				height: 100px;
+				border-radius:50%;
+				background-color: red;
+				position:absolute;
+				animation-iteration-count: infinite;
+				animation-duration: 4s;
+				animation-timing-function: ease-in-out;
+			}
+			span
+			{
+				width: 500px;
+				height: 500px;
+				border-radius:50%;
+				position:absolute;
+				border:solid 50px blue;
+				padding:150px;
+			}
+			div#circle1
+			{
+				animation-name: Circle1;
+			}
+			
+			div#circle2
+			{
+				animation-name: Circle2;
+				animation-delay:0.25s;
+			}
+			
+			div#circle3
+			{
+				animation-name: Circle3;
+				animation-delay:0.5s;
+			}
+			
+			div#circle4
+			{
+				animation-name: Circle4;
+				animation-delay:0.75s;
+			}
+			
+			div#circle5
+			{
+				animation-name: Circle5;
+				animation-delay:1s;
+			}
+			
+			div#circle6
+			{
+				animation-name: Circle6;
+				animation-delay:1.25s;
+			}
+			
+			div#circle7
+			{
+				animation-name: Circle7;
+				animation-delay:1.5s;
+			}
+
+			div#circle8
+			{
+				animation-name: Circle8;
+				animation-delay:1.75s;
+			}
+			
+			@keyframes Circle1 
+			{
+				0%   {left:350px; top:0px;}
+				50%  {left:350px; top:700px;}
+				100% {left:350px; top:0px;}
+			}
+			
+			@keyframes Circle2
+			{
+				0%   {left:220px; top:30px;}
+				50%  {left:480px; top:670px;}
+				100% {left:220px; top:30px;}
+			}
+			
+			@keyframes Circle3 
+			{
+				0%   {left:100px; top:100px;}
+				50%  {left:600px; top:600px;}
+				100% {left:100px; top:100px;}
+			}
+			
+			@keyframes Circle4
+			{
+				0%   {left:30px; top:220px;}
+				50%  {left:670px; top:480px;}
+				100% {left:30px; top:220px;}
+			}
+			
+			@keyframes Circle5
+			{
+				0%   {left:0px; top:350px;}
+				50%  {left:700px; top:350px;}
+				100% {left:0px; top:350px;}
+			}
+			
+			@keyframes Circle6
+			{
+				0%   {left:30px; top:480px;}
+				50%  {left:670px; top:220px;}
+				100% {left:30px; top:480px;}
+			}
+			
+			@keyframes Circle7
+			{
+				0%   {left:100px; top:600px;}
+				50%  {left:600px; top:100px;}
+				100% {left:100px; top:600px;}
+			}
+
+			@keyframes Circle8
+			{
+				0%   {left:220px; top:670px;}
+				50%  {left:480px; top:30px;}
+				100% {left:220px; top:670px;}
+			}
+		</style>
+	</head>
+	<body>
+		<span id="box">
+			<div id="circle1"></div>
+			<div id="circle2"></div>
+			<div id="circle3"></div>
+			<div id="circle4"></div>
+			<div id="circle5"></div>
+			<div id="circle6"></div>
+			<div id="circle7"></div>
+			<div id="circle8"></div>
+		</span>
+	</body>
+</html>
